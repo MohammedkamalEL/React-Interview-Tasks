@@ -1,5 +1,5 @@
-import React from 'react';
-import { useState, memo } from "react";
+import React from "react";
+import { useState, memo, useCallback } from "react";
 
 const ExpensiveChild = memo(({ onClick, label }) => {
   console.log(`ExpensiveChild "${label}" rendered`);
@@ -23,7 +23,15 @@ const ExpensiveChild = memo(({ onClick, label }) => {
 function Buggy() {
   const [count, setCount] = useState(0);
   const [otherState, setOtherState] = useState(0);
-
+  const h1 = useCallback(() => {
+    setCount((prev) => prev + 1);
+  }, []);
+  const h2 = useCallback(() => {
+    setCount((prev) => prev + 2);
+  }, []);
+  const h3 = useCallback(() => {
+    setCount((prev) => prev + 3);
+  }, []);
   return (
     <div>
       <h3>Count: {count}</h3>
@@ -41,9 +49,9 @@ function Buggy() {
       </div>
 
       {/* BUG: New function created every render */}
-      <ExpensiveChild label="Button 1" onClick={() => setCount(count + 1)} />
-      <ExpensiveChild label="Button 2" onClick={() => setCount(count + 2)} />
-      <ExpensiveChild label="Button 3" onClick={() => setCount(count + 3)} />
+      <ExpensiveChild label="Button 1" onClick={h1} />
+      <ExpensiveChild label="Button 2" onClick={h2} />
+      <ExpensiveChild label="Button 3" onClick={h3} />
 
       <p
         style={{

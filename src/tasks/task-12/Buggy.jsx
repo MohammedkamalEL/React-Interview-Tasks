@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import { useState, useEffect } from "react";
 
 function Buggy() {
@@ -7,17 +7,32 @@ function Buggy() {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
+    const controol = new AbortController();
+    let cle;
     setLoading(true);
-
-    fetch(`https://jsonplaceholder.typicode.com/users/${userId}`)
+    fetch(`https://jsonplaceholder.typicode.com/users/${userId}`, {
+      signal: controol.signal,
+    })
       .then((res) => res.json())
       .then((data) => {
-        setTimeout(() => {
+        cle = setTimeout(() => {
           setUserData(data);
           setLoading(false);
         }, 1000);
+      })
+      .catch((err) => {
+        if (err.name === "AbortError") {
+          console.log("======cancle++ is "+ userId);
+        } else {
+          console.log("real Error");
+        }
       });
-
+    return () => {
+      controol.abort();
+      if(cle){
+        clearTimeout(cle)
+      }
+    };
   }, [userId]);
 
   return (

@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import { useState } from "react";
 
 function Buggy() {
@@ -27,9 +27,13 @@ function Buggy() {
   };
 
   const removeTodo = (id) => {
-    const index = todos.findIndex((t) => t.id === id);
-    todos.splice(index, 1);
-    setTodos(todos);
+    console.log(id);
+    const gitTodo = todos.filter((todo) => todo.id != id);
+    console.log(gitTodo);
+    setTodos(gitTodo);
+    // const index = todos.findIndex((t) => t.id === id);
+    // todos.splice(index, 1);
+    // setTodos(todos);
   };
 
   return (
@@ -44,7 +48,7 @@ function Buggy() {
           placeholder="Add a new todo..."
           onKeyPress={(e) => e.key === "Enter" && addTodo()}
         />
-        <button className="btn btn-primary" onClick={addTodo}>
+        <button className="btn btn-primary" onClick={() => addTodo}>
           Add
         </button>
       </div>

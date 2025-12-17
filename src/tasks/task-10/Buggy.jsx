@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import { useState, useEffect } from "react";
 
 function Buggy() {
@@ -10,7 +10,7 @@ function Buggy() {
       const interval = setInterval(() => {
         setCount((prev) => prev + 1);
       }, 100);
-
+      return () => clearInterval(interval);
     }
   }, [isRunning]);
 

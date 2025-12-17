@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import { useState } from "react";
 
 function Buggy() {
@@ -6,15 +6,17 @@ function Buggy() {
   const [log, setLog] = useState([]);
 
   const incrementThreeTimes = () => {
-    setCount(count + 1);
-    setCount(count + 1);
-    setCount(count + 1);
+    setCount((prevC) => prevC + 1);
+    setCount((prevC) => prevC + 1);
+    setCount((prevC) => prevC + 1);
+    // setCount(count + 1);
+    // setCount(count + 1);
   };
 
   const delayedIncrement = () => {
     setTimeout(() => {
-      setCount(count + 1);
-      setLog([...log, `Incremented to ${count + 1}`]);
+      setCount((prev) => prev + 1);
+      setLog((prevL) => [...prevL, `Incremented to ${count + 1}`]);
     }, 1000);
   };
 
@@ -31,7 +33,10 @@ function Buggy() {
           Delayed Increment (1s)
         </button>
 
-        <button className="btn btn-success" onClick={() => setCount(0)}>
+        <button className="btn btn-success" onClick={() => {
+          setCount(0)
+          setLog([])
+        }}>
           Reset
         </button>
       </div>

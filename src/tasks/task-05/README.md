@@ -91,7 +91,7 @@ useEffect(() => {
 function Component({ onUpdate, data }) {
   useEffect(() => {
     onUpdate(data); // Uses both
-  }, []); // Missing both!
+  }, [data]); // Missing both!
 
   // ✅ CORRECT
   useEffect(() => {

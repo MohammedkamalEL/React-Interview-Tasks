@@ -1,17 +1,19 @@
-import React from 'react';
-import { useState } from "react";
+import React from "react";
+import { useState,useMemo } from "react";
 
 const fibonacci = (n) => {
   console.log(`Calculating fibonacci(${n})...`);
   if (n <= 1) return n;
   return fibonacci(n - 1) + fibonacci(n - 2);
-};
+}
 
 function Buggy() {
   const [number, setNumber] = useState(10);
   const [count, setCount] = useState(0);
 
-  const result = fibonacci(number);
+  const result = useMemo(() => {
+    return fibonacci(number);
+  }, [number]);
 
   return (
     <div>

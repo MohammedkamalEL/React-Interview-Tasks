@@ -40,7 +40,7 @@ function Buggy() {
 
       <ul className="item-list">
         {items.map((item, index) => (
-          <li key={index} className="list-item">
+          <li key={item.id} className="list-item">
             <div>
               <strong>{item.name}</strong>
               <input

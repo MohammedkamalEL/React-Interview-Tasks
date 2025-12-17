@@ -1,15 +1,19 @@
-import React from 'react';
+import React from "react";
 import { useState, useEffect } from "react";
 
 function Buggy() {
   const [count, setCount] = useState(0);
   const [data, setData] = useState([]);
 
+  console.log(data);
   useEffect(() => {
     console.log("Effect running...");
-    setData([...data, count]);
-  }, [data, count]);
+    setData((data) => [...data, count]);
+  }, [count]);
 
+  function hanedlRest() {
+    setData([]);
+  }
   return (
     <div>
       <h3>Counter: {count}</h3>
@@ -18,6 +22,9 @@ function Buggy() {
         onClick={() => setCount(count + 1)}
       >
         Increment
+      </button>
+      <button className="btn btn-secandry" onClick={() => hanedlRest()}>
+        Rest
       </button>
 
       <div
@@ -31,7 +38,9 @@ function Buggy() {
       >
         <strong>Data Array:</strong>
         <p style={{ fontSize: "0.9rem", color: "var(--text-secondary)" }}>
-          {data.length} items (growing infinitely!)
+          {/* {data.length} items (growing infinitely!) */}
+          {/* {JSON.stringify(data)} */}
+          [{data.toString()}]
         </p>
       </div>
 

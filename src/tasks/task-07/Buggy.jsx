@@ -27,10 +27,12 @@ function Buggy() {
           <li key={item.id} className="list-item">
             <div>
               <strong>{item.name}</strong>
-              {item.count && (
+              {item.count > 0 ? (
                 <span style={{ marginLeft: "10px", color: "var(--primary)" }}>
                   ({item.count} in stock)
                 </span>
+              ) : (
+                <span className="m-2">(Out of stock)</span>
               )}
             </div>
             <button

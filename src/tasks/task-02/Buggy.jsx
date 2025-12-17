@@ -6,17 +6,24 @@ function Buggy() {
   const [messages, setMessages] = useState([]);
   const [handlers, setHandlers] = useState([]);
 
-  useEffect(() => {
-    const newHandlers = [];
-    for (let i = 0; i < 3; i++) {
-      newHandlers.push(() => {
-        const message = `Button ${i + 1} clicked! Count was: ${count}`;
-        setMessages([...messages, message]);
-      });
-    }
-    setHandlers(newHandlers);
-  }, []);
-
+  // useEffect(() => {
+  //   const newHandlers = [];
+  //   for (let i = 0; i < 3; i++) {
+  //     newHandlers.push(() => {
+  //       console.log(count);
+  //       const message = `Button ${i + 1} clicked! Count: ${count}`;
+  //       // setMessages([...messages, message]);
+  //       setMessages((prevMessage) => [...prevMessage, message]);
+  //     });
+  //   }
+  //   setHandlers(newHandlers);
+  // }, []);
+  function handle(bnum) {
+    setMessages((prevM) => [
+      ...prevM,
+      `Button ${bnum} clicked! Count: ${count}`,
+    ]);
+  }
   return (
     <div>
       <h3>Counter: {count}</h3>
@@ -31,11 +38,11 @@ function Buggy() {
         <p style={{ color: "var(--text-secondary)", fontSize: "0.9rem" }}>
           Click buttons below after incrementing:
         </p>
-        {handlers.map((handler, idx) => (
+        {[1, 2, 3].map((idx) => (
           <button
             key={idx}
             className="btn btn-primary"
-            onClick={handler}
+            onClick={() => handle(idx)}
             style={{ margin: "0.25rem" }}
           >
             Button {idx + 1}

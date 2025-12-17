@@ -9,7 +9,7 @@ function Buggy() {
   useEffect(() => {
     console.log("Effect running! Calculating result...");
     setResult(count * multiplier);
-  }, [count]);
+  }, [count, multiplier]);
 
   return (
     <div>
@@ -19,13 +19,23 @@ function Buggy() {
         <label style={{ display: "block", marginBottom: "0.5rem" }}>
           Count: {count}
         </label>
-        <input
+        {/* <input
           type="range"
           min="0"
           max="10"
           value={count}
           onChange={(e) => setCount(Number(e.target.value))}
           style={{ width: "100%" }}
+        /> */}
+        <span>Count is : {count}</span>
+        <input
+          type="range"
+          min={0}
+          max={10}
+          value={count}
+          onChange={(e) => {
+            setCount(e.target.value);
+          }}
         />
       </div>
 

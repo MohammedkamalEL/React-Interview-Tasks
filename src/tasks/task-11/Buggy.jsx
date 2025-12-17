@@ -19,7 +19,7 @@ function Buggy() {
             key={index}
             className="btn btn-primary"
             style={{ margin: "0.25rem" }}
-            onClick={handleClick(item)}
+            onClick={handleClick.bind(null,item)}
           >
             {item}
           </button>
