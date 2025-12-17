@@ -73,7 +73,7 @@ Created by **Mahmoud Taha**
 
 Need help or have questions? Feel free to reach out:
 
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-blue?style=for-the-badge&logo=linkedin)](https://www.linkedin.com/in/mahmoud-taha-dev/)
+
 
 ---
 
